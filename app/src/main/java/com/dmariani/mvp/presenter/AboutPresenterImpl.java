@@ -3,6 +3,8 @@ package com.dmariani.mvp.presenter;
 import com.dmariani.mvp.manager.AboutManager;
 import com.dmariani.mvp.ui.view.AboutView;
 
+import java.io.IOException;
+
 import javax.inject.Inject;
 
 /**
@@ -21,7 +23,12 @@ public class AboutPresenterImpl extends BasePresenterImpl<AboutView> implements 
 
     @Override
     public void fetchProfile() {
-        String result = aboutManager.fetchProfile();
+        String result;
+        try {
+            result = aboutManager.fetchProfile();
+        } catch (IOException e) {
+            result = "error";
+        }
         getView().onFetchProfile(result);
     }
 }
