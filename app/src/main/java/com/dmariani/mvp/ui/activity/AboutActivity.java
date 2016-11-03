@@ -7,6 +7,7 @@ import android.widget.TextView;
 
 import com.dmariani.mvp.MvpApplication;
 import com.dmariani.mvp.R;
+import com.dmariani.mvp.model.User;
 import com.dmariani.mvp.presenter.AboutPresenter;
 import com.dmariani.mvp.ui.view.AboutView;
 
@@ -40,8 +41,12 @@ public class AboutActivity extends AppCompatActivity implements AboutView {
     }
 
     @Override
-    public void onFetchProfile(String message) {
-        textViewMessage.setText(message);
+    public void onFetchProfile(User user) {
+        if (user == null) {
+            textViewMessage.setText("Null");
+        } else {
+            textViewMessage.setText(user.toString());
+        }
     }
 
 }

@@ -2,10 +2,10 @@ package com.dmariani.mvp.api;
 
 import com.dmariani.mvp.model.User;
 
-import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Headers;
 import retrofit2.http.Path;
+import rx.Observable;
 
 /**
  * API Client that defines GitHub Service operations
@@ -20,5 +20,5 @@ public interface GitHubApiClient {
             ApiConstants.Headers.USER_AGENT
     })
     @GET(ApiConstants.USER_PROFILE_PATH)
-    Call<User> getUser(@Path(ApiConstants.Params.USERNAME) String username);
+    Observable<User> getUser(@Path(ApiConstants.Params.USERNAME) String username);
 }

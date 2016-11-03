@@ -1,5 +1,7 @@
 package com.dmariani.mvp.ui.view;
 
+import com.dmariani.mvp.model.User;
+
 /**
  * MVP View which defines AboutPresenter notifications
  *
@@ -8,6 +10,6 @@ package com.dmariani.mvp.ui.view;
 
 public interface AboutView extends BaseView {
 
-    void onFetchProfile(String message);
+    void onFetchProfile(User user);
 
 }

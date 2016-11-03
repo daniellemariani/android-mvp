@@ -1,6 +1,8 @@
 package com.dmariani.mvp.manager;
 
-import java.io.IOException;
+import com.dmariani.mvp.model.User;
+
+import rx.Observable;
 
 /**
  * It defines operations to manage About data
@@ -14,5 +16,5 @@ public interface AboutManager {
      * It makes a request to get my Own GitHub Profile
      * @return
      */
-    String fetchProfile() throws IOException;
+    Observable<User> fetchProfile();
 }
