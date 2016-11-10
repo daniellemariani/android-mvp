@@ -2,7 +2,7 @@
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
+        <item name="android:windowBackground">@android:color/white</item>
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
@@ -16,5 +16,19 @@
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="Avatar">
+        <item name="android:src">@android:drawable/sym_def_app_icon</item>
+    </style>
+
+    <style name="Avatar.Small">
+        <item name="android:layout_width">@dimen/avatar_small_width</item>
+        <item name="android:layout_height">@dimen/avatar_small_height</item>
+    </style>
+
+    <style name="Avatar.Large">
+        <item name="android:layout_width">@dimen/avatar_large_width</item>
+        <item name="android:layout_height">@dimen/avatar_large_height</item>
+    </style>
 
 </resources>

@@ -3,19 +3,55 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/margin_large"
+        android:gravity="center_horizontal"
+        android:text="@string/app_name"
+        android:textSize="@dimen/text_size_xlarge" />
+
+    <ImageView
+        android:id="@+id/imageview_avatar"
+        style="@style/Avatar.Large"
+        android:layout_gravity="center_horizontal" />
+
+    <TextView
+        android:id="@+id/textview_fullname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:textSize="@dimen/text_size_normal"
+        tools:text="Author: Danielle Mariani" />
+
+    <TextView
+        android:id="@+id/textview_location"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:textSize="@dimen/text_size_normal"
+        tools:text="Venezuela" />
+
+    <TextView
+        android:id="@+id/textview_version"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_xlarge"
+        android:gravity="center_horizontal"
+        android:textSize="@dimen/text_size_small"
+        tools:text="Version: 1.0.0" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:text="Result:"/>
-
-    <TextView
-        android:id="@+id/text_message"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        tools:text="Hola Mundo" />
+        android:text="@string/app_description"
+        android:textSize="@dimen/text_size_small" />
 
 </LinearLayout>
