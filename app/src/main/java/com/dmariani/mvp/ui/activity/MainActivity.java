@@ -1,6 +1,5 @@
 package com.dmariani.mvp.ui.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -11,13 +10,21 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.dmariani.mvp.MvpApplication;
 import com.dmariani.mvp.R;
+import com.dmariani.mvp.presenter.MainPresenter;
+import com.dmariani.mvp.ui.view.MainView;
+
+import javax.inject.Inject;
 
 /**
  * @author danielle.mariani
  */
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, MainView {
+
+    @Inject
+    protected MainPresenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +41,11 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        ((MvpApplication) getApplication()).getComponent().inject(this);
+
+        // init presenter
+        presenter.attachView(this);
     }
 
     @Override
@@ -73,15 +85,30 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_explore) {
 
         } else if (id == R.id.nav_profile) {
-
+            presenter.onClickProfileItem();
         } else if (id == R.id.nav_settings) {
 
         } else if (id == R.id.nav_about) {
-            startActivity(new Intent(this, AboutActivity.class));
+            presenter.onClickAboutItem();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public void navigateToAbout() {
+        startActivity(AboutActivity.createIntent(this));
+    }
+
+    @Override
+    public void navigateToLogin() {
+        // do something
+    }
+
+    @Override
+    public void navigateToProfile() {
+        // do something
     }
 }

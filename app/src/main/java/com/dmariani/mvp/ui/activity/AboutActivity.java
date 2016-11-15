@@ -1,5 +1,7 @@
 package com.dmariani.mvp.ui.activity;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -40,6 +42,10 @@ public class AboutActivity extends AppCompatActivity implements AboutView {
 
     @BindView(R.id.textview_version)
     TextView textViewVersion;
+
+    public static Intent createIntent(Context context) {
+        return new Intent(context, AboutActivity.class);
+    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

@@ -6,6 +6,8 @@ import com.dmariani.mvp.manager.AboutManager;
 import com.dmariani.mvp.manager.AboutManagerImpl;
 import com.dmariani.mvp.presenter.AboutPresenter;
 import com.dmariani.mvp.presenter.AboutPresenterImpl;
+import com.dmariani.mvp.presenter.MainPresenter;
+import com.dmariani.mvp.presenter.MainPresenterImpl;
 
 import javax.inject.Singleton;
 
@@ -34,6 +36,12 @@ public class ApplicationModule {
                 .build();
 
         return retrofit.create(GitHubApiClient.class);
+    }
+
+    @Provides
+    @Singleton
+    public MainPresenter provideMainPresenter() {
+        return new MainPresenterImpl();
     }
 
     @Provides

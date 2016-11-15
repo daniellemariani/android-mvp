@@ -10,7 +10,7 @@ import com.dmariani.mvp.ui.view.BaseView;
 
 public class BasePresenterImpl <BV extends BaseView> implements BasePresenter<BV> {
 
-    private BV view;
+    protected BV view;
 
     @Override
     public void attachView(BV view) {
@@ -27,8 +27,4 @@ public class BasePresenterImpl <BV extends BaseView> implements BasePresenter<BV
         this.view = null;
     }
 
-    @Override
-    public BV getView() {
-        return view;
-    }
 }

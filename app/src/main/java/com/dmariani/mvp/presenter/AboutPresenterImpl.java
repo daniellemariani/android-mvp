@@ -49,7 +49,7 @@ public class AboutPresenterImpl extends BasePresenterImpl<AboutView> implements 
                     public void onNext(User user) {
                         NLog.success();
                         NLog.result(user.toString());
-                        getView().onFetchProfile(user);
+                        view.onFetchProfile(user);
                     }
                 });
 
