@@ -105,4 +105,9 @@ public class MainActivity extends AppCompatActivity
     public void navigateToProfile() {
         // do something
     }
+
+    @Override
+    public void onError(int errorMessage) {
+        // do nothing
+    }
 }

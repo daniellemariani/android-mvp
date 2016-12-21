@@ -6,4 +6,6 @@ package com.dmariani.mvp.ui.view;
  */
 
 public interface BaseView {
+
+    void onError(int errorMessage);
 }

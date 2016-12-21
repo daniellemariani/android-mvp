@@ -76,4 +76,8 @@ public class AboutActivity extends AppCompatActivity implements AboutView {
         }
     }
 
+    @Override
+    public void onError(int errorMessage) {
+        // do nothing
+    }
 }
