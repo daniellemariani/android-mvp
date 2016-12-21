@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        // inject dependencies
         ((MvpApplication) getApplication()).getComponent().inject(this);
 
         // init presenter
@@ -78,23 +79,16 @@ public class MainActivity extends AppCompatActivity
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        int id = item.getItemId();
-
-        if (id == R.id.nav_home) {
-            // do something
-        } else if (id == R.id.nav_explore) {
-
-        } else if (id == R.id.nav_profile) {
-            presenter.onClickProfileItem();
-        } else if (id == R.id.nav_settings) {
-
-        } else if (id == R.id.nav_about) {
-            presenter.onClickAboutItem();
-        }
-
+        presenter.onClickMenuItem(item.getItemId());
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void setContentFragment(Fragment fragment){
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.layout_content, fragment)
+                .commit();
     }
 
     @Override
