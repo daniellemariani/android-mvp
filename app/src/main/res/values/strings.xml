@@ -19,4 +19,15 @@
     <string name="app_author">Author: %1$s</string>
     <string name="app_version">Version: %1$s</string>
     <string name="app_description">Sample App that demonstrates how to work with Dagger 2 + Retrofit 2 implementing MVP</string>
+
+    <!-- Error -->
+    <string name="error_invalid_username">Invalid username</string>
+    <string name="error_already_logged_in">You\'re already logged in</string>
+    <string name="error_server_login">It was not possible to sign in</string>
+
+    <!-- Login -->
+    <string name="login">Login</string>
+    <string name="login_description">Introduce your GitHub Username to see your repos and explore profiles</string>
+    <string name="username">Username</string>
+    <string name="button_continue">Continue</string>
 </resources>
