@@ -8,6 +8,7 @@ import com.dmariani.mvp.presenter.AboutPresenter;
 import com.dmariani.mvp.presenter.AboutPresenterImpl;
 import com.dmariani.mvp.presenter.MainPresenter;
 import com.dmariani.mvp.presenter.MainPresenterImpl;
+import com.dmariani.mvp.utils.RxBus;
 
 import javax.inject.Singleton;
 
@@ -40,19 +41,25 @@ public class ApplicationModule {
 
     @Provides
     @Singleton
-    public MainPresenter provideMainPresenter() {
-        return new MainPresenterImpl();
+    public RxBus provideRxBus() {
+        return new RxBus();
     }
 
     @Provides
     @Singleton
-    public AboutManager provideAboutManager(AboutManagerImpl aboutManager) {
-        return aboutManager;
+    public MainPresenter provideMainPresenter(MainPresenterImpl presenter) {
+        return presenter;
     }
 
     @Provides
     @Singleton
     public AboutPresenter provideAboutPresenter(AboutPresenterImpl presenter) {
         return presenter;
+    }
+
+    @Provides
+    @Singleton
+    public AboutManager provideAboutManager(AboutManagerImpl aboutManager) {
+        return aboutManager;
     }
 }
