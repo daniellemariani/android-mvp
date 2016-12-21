@@ -4,6 +4,8 @@ import com.dmariani.mvp.api.ApiConstants;
 import com.dmariani.mvp.api.GitHubApiClient;
 import com.dmariani.mvp.manager.AboutManager;
 import com.dmariani.mvp.manager.AboutManagerImpl;
+import com.dmariani.mvp.manager.ProfileManager;
+import com.dmariani.mvp.manager.ProfileManagerImpl;
 import com.dmariani.mvp.presenter.AboutPresenter;
 import com.dmariani.mvp.presenter.AboutPresenterImpl;
 import com.dmariani.mvp.presenter.MainPresenter;
@@ -61,5 +63,11 @@ public class ApplicationModule {
     @Singleton
     public AboutManager provideAboutManager(AboutManagerImpl aboutManager) {
         return aboutManager;
+    }
+
+    @Provides
+    @Singleton
+    public ProfileManager provideProfileManager(ProfileManagerImpl profileManager) {
+        return profileManager;
     }
 }
