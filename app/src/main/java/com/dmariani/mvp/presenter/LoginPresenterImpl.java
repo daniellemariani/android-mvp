@@ -7,6 +7,7 @@ import com.dmariani.mvp.manager.ProfileManager;
 import com.dmariani.mvp.model.User;
 import com.dmariani.mvp.ui.view.LoginView;
 import com.dmariani.mvp.utils.NLog;
+import com.dmariani.mvp.utils.RxBus;
 
 import javax.inject.Inject;
 
@@ -21,10 +22,12 @@ import rx.schedulers.Schedulers;
 public class LoginPresenterImpl extends BasePresenterImpl<LoginView> implements LoginPresenter {
 
     private ProfileManager profileManager;
+    private RxBus bus;
 
     @Inject
-    public LoginPresenterImpl(ProfileManager profileManager) {
+    public LoginPresenterImpl(ProfileManager profileManager, RxBus bus) {
         this.profileManager = profileManager;
+        this.bus = bus;
     }
 
     @Override
@@ -40,12 +43,14 @@ public class LoginPresenterImpl extends BasePresenterImpl<LoginView> implements 
             return;
         }
 
+        view.showLoader();
         profileManager.login(username)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<User>() {
                     @Override
                     public void onCompleted() {
+                        view.hideLoader();
                     }
 
                     @Override
@@ -58,7 +63,7 @@ public class LoginPresenterImpl extends BasePresenterImpl<LoginView> implements 
                     @Override
                     public void onNext(User user) {
                         profileManager.setUserLoggedIn(true);
-                        view.onLogin(user);
+                        bus.send(new ProfileManager.ProfileEvent(user));
                     }
                 });
     }

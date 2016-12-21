@@ -8,16 +8,25 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.dmariani.mvp.MvpApplication;
 import com.dmariani.mvp.R;
+import com.dmariani.mvp.manager.ProfileManager;
+import com.dmariani.mvp.model.User;
 import com.dmariani.mvp.presenter.MainPresenter;
 import com.dmariani.mvp.ui.fragment.LoginFragment;
 import com.dmariani.mvp.ui.view.MainView;
+import com.dmariani.mvp.utils.RxBus;
 
 import javax.inject.Inject;
+
+import rx.Subscription;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Action1;
 
 /**
  * @author danielle.mariani
@@ -27,6 +36,11 @@ public class MainActivity extends AppCompatActivity
 
     @Inject
     protected MainPresenter presenter;
+
+    @Inject
+    protected RxBus bus;
+
+    private Subscription busSubscription;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +63,18 @@ public class MainActivity extends AppCompatActivity
 
         // init presenter
         presenter.attachView(this);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        subscribeBus();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        unsubscribeBus();
     }
 
     @Override
@@ -92,6 +118,41 @@ public class MainActivity extends AppCompatActivity
                 .replace(R.id.layout_content, fragment)
                 .commit();
     }
+
+    /**
+     * RxBus
+     */
+
+    private void subscribeBus() {
+        busSubscription = bus.getObservable()
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        new Action1<Object>() {
+                            @Override
+                            public void call(Object object) {
+                                handlerBus(object);
+                            }
+                        }
+                );
+    }
+
+    private void unsubscribeBus() {
+        if (busSubscription != null && !busSubscription.isUnsubscribed()) {
+            busSubscription.unsubscribe();
+        }
+    }
+
+    private void handlerBus(Object object) {
+        if (object instanceof ProfileManager.ProfileEvent) {
+            User user = ((ProfileManager.ProfileEvent) object).getUser();
+            Toast.makeText(this, "User: " + user.getName(), Toast.LENGTH_SHORT).show();
+            // TODO: replace login fragment
+        }
+    }
+
+    /**
+     * Main View
+     */
 
     @Override
     public void navigateToAbout() {

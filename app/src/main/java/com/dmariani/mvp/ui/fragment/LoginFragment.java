@@ -11,10 +11,8 @@ import android.widget.Toast;
 
 import com.dmariani.mvp.MvpApplication;
 import com.dmariani.mvp.R;
-import com.dmariani.mvp.model.User;
 import com.dmariani.mvp.presenter.LoginPresenter;
 import com.dmariani.mvp.ui.view.LoginView;
-import com.dmariani.mvp.utils.RxBus;
 
 import javax.inject.Inject;
 
@@ -31,9 +29,6 @@ public class LoginFragment extends Fragment implements LoginView {
 
     @Inject
     protected LoginPresenter presenter;
-
-    @Inject
-    protected RxBus bus;
 
     @BindView(R.id.edittext_username)
     EditText editTextUsername;
@@ -62,14 +57,19 @@ public class LoginFragment extends Fragment implements LoginView {
         presenter.attachView(this);
     }
 
-    @OnClick(R.id.button)
-    public void onContinueButtonClick() {
-        presenter.login(editTextUsername.getText().toString());
+    @Override
+    public void showLoader() {
+        // do something
     }
 
     @Override
-    public void onLogin(User user) {
-        Toast.makeText(getContext(), "Login Ok", Toast.LENGTH_SHORT).show();
+    public void hideLoader() {
+        // do something
+    }
+
+    @OnClick(R.id.button)
+    public void onContinueButtonClick() {
+        presenter.login(editTextUsername.getText().toString());
     }
 
     @Override
