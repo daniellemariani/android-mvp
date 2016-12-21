@@ -2,6 +2,7 @@ package com.dmariani.mvp.di;
 
 import com.dmariani.mvp.ui.activity.AboutActivity;
 import com.dmariani.mvp.ui.activity.MainActivity;
+import com.dmariani.mvp.ui.fragment.LoginFragment;
 
 import javax.inject.Singleton;
 
@@ -20,4 +21,6 @@ public interface ApplicationComponent {
     void inject(MainActivity activity);
 
     void inject(AboutActivity activity);
+
+    void inject(LoginFragment fragment);
 }

@@ -8,6 +8,8 @@ import com.dmariani.mvp.manager.ProfileManager;
 import com.dmariani.mvp.manager.ProfileManagerImpl;
 import com.dmariani.mvp.presenter.AboutPresenter;
 import com.dmariani.mvp.presenter.AboutPresenterImpl;
+import com.dmariani.mvp.presenter.LoginPresenter;
+import com.dmariani.mvp.presenter.LoginPresenterImpl;
 import com.dmariani.mvp.presenter.MainPresenter;
 import com.dmariani.mvp.presenter.MainPresenterImpl;
 import com.dmariani.mvp.utils.RxBus;
@@ -56,6 +58,12 @@ public class ApplicationModule {
     @Provides
     @Singleton
     public AboutPresenter provideAboutPresenter(AboutPresenterImpl presenter) {
+        return presenter;
+    }
+
+    @Provides
+    @Singleton
+    public LoginPresenter provideLoginPresenter(LoginPresenterImpl presenter) {
         return presenter;
     }
 

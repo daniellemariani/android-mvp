@@ -2,6 +2,7 @@ package com.dmariani.mvp.ui.activity;
 
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -13,6 +14,7 @@ import android.view.MenuItem;
 import com.dmariani.mvp.MvpApplication;
 import com.dmariani.mvp.R;
 import com.dmariani.mvp.presenter.MainPresenter;
+import com.dmariani.mvp.ui.fragment.LoginFragment;
 import com.dmariani.mvp.ui.view.MainView;
 
 import javax.inject.Inject;
@@ -98,7 +100,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void navigateToLogin() {
-        // do something
+         setContentFragment(LoginFragment.newInstance());
     }
 
     @Override
